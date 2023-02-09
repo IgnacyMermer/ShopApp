@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const signingRoutes = require('./routes/signing/main')
 const env = require('dotenv').config()
+const productRoutes = require('./routes/products/products')
 
 
 app.get('/src/app.js', (req, res, status)=>{
@@ -16,7 +17,6 @@ app.get('/src/app.js', (req, res, status)=>{
 app.use(cors());
 app.use(express.json());
 
-console.log(process.env.DB_USERNAME)
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.vzcpo.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
 {
     useUnifiedTopology: true,
@@ -28,4 +28,5 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 });
 
 app.use('/', signingRoutes)
+app.use('/products', productRoutes)
 app.listen(3000);
