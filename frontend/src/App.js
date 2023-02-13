@@ -1,11 +1,12 @@
 import './App.css';
+import Header from './components/header/main';
 import Main from './pages/main'
 
 function App() {
   return (
     <div className="App">
-      <header style={{backgroundColor: 'black'}}>
-        <p style={{color: 'red'}}>Header</p>
+      <header>
+        <Header/>
       </header>
       <Main/>
     </div>

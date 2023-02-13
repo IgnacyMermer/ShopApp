@@ -6,6 +6,7 @@ const app = express();
 const signingRoutes = require('./routes/signing/main')
 const env = require('dotenv').config()
 const productRoutes = require('./routes/products/products')
+const categoriesRoutes = require('./routes/categories/categories')
 
 
 app.get('/src/app.js', (req, res, status)=>{
@@ -29,4 +30,5 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 
 app.use('/', signingRoutes)
 app.use('/products', productRoutes)
+app.use('/categories', categoriesRoutes)
 app.listen(3000);

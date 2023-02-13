@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../store/actions/productAction'
-
+import {Card, CardContent, CardActions, Button} from '@mui/material'
 
 export default function Main() {
 
@@ -15,7 +15,23 @@ export default function Main() {
 
     return (
         <div>
-            {JSON.stringify(productReducer)}
+            {JSON.stringify(productReducer.products)}
+            <div style={{display: 'flex', flexWrap: 'wrap'}}>{productReducer.products&&productReducer.products.map((product)=>{
+                return (
+                    <Card style={{width: "50%"}}>
+                        <CardContent>
+                            <p>{product.name}</p>
+                            <p>{product.description}</p>
+                        </CardContent>
+                        <CardActions>
+                            <Button>
+                                Dodaj do koszyka
+                            </Button>
+                        </CardActions>
+                    </Card>
+                )
+            })}
+            </div>
         </div>
     )
 }
