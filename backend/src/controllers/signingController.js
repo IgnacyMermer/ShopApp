@@ -32,6 +32,7 @@ exports.signIn = (req, res, status)=>{
 
 exports.signUp = (req, res, status)=>{
     const {email, username, password, firstName, lastName} = req.body
+    console.log(email)
     let role = 'User'
     if(req.body.role == 'Admin'){
         role = 'Admin'
@@ -44,6 +45,7 @@ exports.signUp = (req, res, status)=>{
                 })
             }
             else{
+                console.log('here')
                 const user = new User({
                     email,
                     username,
@@ -52,12 +54,12 @@ exports.signUp = (req, res, status)=>{
                     lastName,
                     role
                 })
+                
                 user.save().then(user=>{
                     const token = jwt.sign({
                         _id: user._id,
                         role: user.role
                     }, process.env.JWT_KEY, {expiresIn: '2h'})
-
                     res.status(200).json({
                         message: "Signed up",
                         user,
