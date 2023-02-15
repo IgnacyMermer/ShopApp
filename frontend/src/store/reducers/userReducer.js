@@ -5,7 +5,8 @@ const initialState={
     user: null,
     loggedIn: false,
     loading: false,
-    error: null
+    error: null,
+    token: null
 }
 
 
@@ -24,7 +25,8 @@ const userReducer = (state=initialState, action)=>{
                 user: action.payload,
                 loggedIn: true,
                 loading: false,
-                error: null
+                error: null,
+                token: action.token
             }
             break;
         case userConstants.REGISTER_USER_FAILURE:
@@ -32,6 +34,30 @@ const userReducer = (state=initialState, action)=>{
                 ...state,
                 loading: false,
                 error: action.error
+            }
+            break;
+        case userConstants.SIGNIN_USER_REQUEST:
+            state={
+                ...state,
+                loading: true,
+                error: null
+            }
+            break;
+        case userConstants.SIGNIN_USER_SUCCESS:
+            state={
+                ...state,
+                user: action.payload,
+                loggedIn: true,
+                loading: false,
+                error: null,
+                token: action.token
+            }
+            break;
+        case userConstants.SIGNIN_USER_FAILURE:
+            state={
+                ...state,
+                error: action.error,
+                loading: false
             }
             break;
     }

@@ -8,8 +8,13 @@ exports.signIn = (req, res, status)=>{
         User.findOne({email: req.body.email}).exec().then(async user=>{
             if(user != undefined){
                 if(await bcrypt.compare(req.body.password, user.hashPassword)){
+                    const token = jwt.sign({
+                        _id: user._id,
+                        role: user.role
+                    }, process.env.JWT_KEY, {expiresIn: '2h'})
                     return res.status(200).json({
-                        user
+                        user,
+                        token
                     })
                 } 
                 else{
@@ -45,7 +50,6 @@ exports.signUp = (req, res, status)=>{
                 })
             }
             else{
-                console.log('here')
                 const user = new User({
                     email,
                     username,

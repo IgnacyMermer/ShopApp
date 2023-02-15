@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 export default function Header() {
 
   const categories = useSelector(state=>state.categoryReducer)
+  const userReducer = useSelector(state=>state.userReducer)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -27,9 +28,9 @@ export default function Header() {
       </div>
       <div className='signing'>
         <span style={{color: 'white'}}>
-          <Link to='/signing' style={{color: 'white', textDecoration: 'none'}}>
+          {!userReducer.loggedIn&&<Link to='/signing' style={{color: 'white', textDecoration: 'none'}}>
             Zaloguj się
-          </Link>
+          </Link>}
         </span>
       </div>
     </div>

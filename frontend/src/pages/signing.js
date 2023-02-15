@@ -2,7 +2,9 @@ import { Button, TextField, Dialog, DialogTitle, DialogContent, DialogContentTex
     DialogActions } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { registerUser } from '../store/actions/userActions'
+import { registerUser, signIn } from '../store/actions/userActions'
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function Signing() {
@@ -17,21 +19,32 @@ export default function Signing() {
 
     const dispatch = useDispatch()
     const userReducer = useSelector(state=>state.userReducer)
+    const navigate = useNavigate();
 
     useEffect(()=>{
         if(userReducer.loggedIn){
             setOpen(false)
+            return navigate("../");
         }
-    }, [userReducer])
+        
+    }, [userReducer.loggedIn])
     
     return (
         <div>
+            
             <p><TextField label="e-mail" variant="outlined" value={email} onChange={(e)=>{
                 setEmail(e.target.value)
             }}/></p>
             <p><TextField label="Hasło" variant="outlined" value={password} onChange={(e)=>{
-                setPassword(e.target.password)
+                setPassword(e.target.value)
             }}/></p>
+            <p>
+                <Button onClick={()=>{
+                    dispatch(signIn({email, password}))
+                }}>
+                    Zaloguj się
+                </Button>
+            </p>
             <p>
                 <Button onClick={()=>{
                     setOpen(true)
