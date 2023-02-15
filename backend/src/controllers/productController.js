@@ -21,6 +21,21 @@ exports.getAllProducts = (req, res, status)=>{
     }
 }
 
+exports.getProductsInCategory = async(req, res, status)=>{
+    try{
+        let products = []
+        products=products.concat(await Product.find({category: req.params.category}).exec())
+        products=products.concat(await Product.find({'parentId.category': req.params.category}).exec())
+        products=products.concat(await Product.find({'parentId.parentId.category': req.params.category}).exec())
+        return res.status(200).json({products})    
+    }
+    catch(e){
+        return res.status(400).json({
+            error: e
+        })
+    }
+}
+
 exports.addNewProduct = (req, res, status)=>{
     try{
         const {name, shortName, price, quantity, description, category, createdBy, 

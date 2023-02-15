@@ -51,7 +51,7 @@ const basketReducer = (state=initialState, action)=>{
             state={
                 ...state,
                 products: state.products.filter(product=>product!=action.payload),
-                price: state.price-action.payload.price
+                price: state.price-action.payload.price*action.payload.quantity
             }
             break;
         case basketConstants.LOAD_BASKET_REQUEST:

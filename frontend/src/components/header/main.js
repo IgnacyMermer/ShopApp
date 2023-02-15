@@ -9,6 +9,7 @@ export default function Header() {
 
   const categories = useSelector(state=>state.categoryReducer)
   const userReducer = useSelector(state=>state.userReducer)
+  const basketReducer = useSelector(state=>state.basketReducer)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -27,9 +28,14 @@ export default function Header() {
         })}
       </div>
       <div className='signing'>
+      <span style={{color: 'white', paddingRight: '20px'}}>
+          <Link to='../' style={{color: 'white', textDecoration: 'none'}}>
+            HOME
+          </Link>
+        </span>
         <span style={{color: 'white'}}>
           <Link to='../basket' style={{color: 'white', textDecoration: 'none'}}>
-            Koszyk
+            Koszyk ({basketReducer.products.length})
           </Link>
         </span>
         <span style={{color: 'white'}}>

@@ -12,7 +12,7 @@ export default function Basket() {
 
   return (
     <div>
-        <h2>Twój koszyk</h2>
+        <h2>{basketReducer.products.length!=0?'Twój koszyk':'Twój koszyk jest pusty'}</h2>
         <div>
           {
             JSON.stringify(basketReducer)
@@ -22,8 +22,9 @@ export default function Basket() {
               return(
                 <p>
                   <div>
-                    <span>{product.name}</span>
-                    <span>Cena: {product.quantity*product.price}</span>
+                    <span>{product.name}{'\t'}</span>
+                    <span>Ilość: {product.quantity}{'\t'}</span>
+                    <span>Cena: {product.quantity*product.price} zł{'\t'}</span>
                     <Button onClick={()=>{
                       dispatch({type: basketConstants.REMOVE_PRODUCT_FROM_BASKET, payload: product})
                     }}>
@@ -34,6 +35,10 @@ export default function Basket() {
               )
             })
           }
+        </div>
+        <div>
+          <h3>Kwota całkowita:</h3>
+          <h5>{basketReducer.price} zł</h5>
         </div>
     </div>
   )
