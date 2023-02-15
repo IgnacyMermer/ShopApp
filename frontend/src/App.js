@@ -6,6 +6,8 @@ import Signing from './pages/signing';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { isUserActive } from './store/actions/userActions';
+import MyAccount from './pages/myAccount';
+import Basket from './pages/Basket'
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Main/>}/>
         <Route path='/signing' element={<Signing/>}/>
+        <Route path='/my_account' element={<MyAccount/>}/>
+        <Route path='/basket' element={<Basket/>}/>
       </Routes>
       </Router>
     </div>

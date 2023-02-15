@@ -28,7 +28,12 @@ export default function Header() {
       </div>
       <div className='signing'>
         <span style={{color: 'white'}}>
-          {!userReducer.loggedIn&&<Link to='/signing' style={{color: 'white', textDecoration: 'none'}}>
+          <Link to='../basket' style={{color: 'white', textDecoration: 'none'}}>
+            Koszyk
+          </Link>
+        </span>
+        <span style={{color: 'white'}}>
+          {!userReducer.loggedIn&&<Link to='../signing' style={{color: 'white', textDecoration: 'none'}}>
             Zaloguj się
           </Link>}
         </span>

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../store/actions/productAction'
 import {Card, CardContent, CardActions, Button} from '@mui/material'
-import { addProductToBucket } from '../store/actions/bucketActions'
+import { addProductToBasket } from '../store/actions/basketActions'
+
 
 export default function Main() {
 
     const productReducer = useSelector(state=>state.productReducer)
-    const bucketReducer = useSelector(state=>state.bucketReducer)
+    const basketReducer = useSelector(state=>state.basketReducer)
     const dispatch = useDispatch()
 
     useEffect(()=>{
@@ -17,8 +18,6 @@ export default function Main() {
 
     return (
         <div>
-            {JSON.stringify(productReducer.products)}
-            <p>{JSON.stringify(bucketReducer)}</p>
             <div style={{display: 'flex', flexWrap: 'wrap'}}>{productReducer.products&&productReducer.products.map((product)=>{
                 return (
                     <Card style={{width: "50%"}}>
@@ -28,7 +27,7 @@ export default function Main() {
                         </CardContent>
                         <CardActions>
                             <Button onClick={()=>{
-                                dispatch(addProductToBucket(product))
+                                dispatch(addProductToBasket(product))
                             }}>
                                 Dodaj do koszyka
                             </Button>
