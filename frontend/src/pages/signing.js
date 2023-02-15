@@ -2,7 +2,7 @@ import { Button, TextField, Dialog, DialogTitle, DialogContent, DialogContentTex
     DialogActions } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { registerUser, signIn } from '../store/actions/userActions'
+import { isUserActive, registerUser, signIn } from '../store/actions/userActions'
 import { useNavigate } from "react-router-dom";
 
 
@@ -20,6 +20,12 @@ export default function Signing() {
     const dispatch = useDispatch()
     const userReducer = useSelector(state=>state.userReducer)
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('token')!=null){
+            dispatch(isUserActive(localStorage.getItem('token')))
+        }
+    }, [])
 
     useEffect(()=>{
         if(userReducer.loggedIn){

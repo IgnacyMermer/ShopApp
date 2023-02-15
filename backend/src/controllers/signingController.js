@@ -37,7 +37,6 @@ exports.signIn = (req, res, status)=>{
 
 exports.signUp = (req, res, status)=>{
     const {email, username, password, firstName, lastName} = req.body
-    console.log(email)
     let role = 'User'
     if(req.body.role == 'Admin'){
         role = 'Admin'
@@ -80,6 +79,20 @@ exports.signUp = (req, res, status)=>{
     catch(e){
         return res.status(400).json({
             error: e
+        })
+    }
+}
+
+exports.userActive = (req, res, status)=>{
+    const token = req.params.token
+    if(jwt.verify(token, process.env.JWT_KEY)){
+       return res.status(200).json({
+        message: 'User active'
+       })
+    }
+    else{
+        return res.status(400).json({
+            message: 'User not active'
         })
     }
 }
