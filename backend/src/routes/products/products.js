@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/all', getAllProducts)
 router.get('/categories', getAllCategories)
-router.get('/:category', getProductsInCategory)
+router.get('/category/:category', getProductsInCategory)
 
 router.post('/add', addNewProduct)
 

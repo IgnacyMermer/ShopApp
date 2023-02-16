@@ -22,7 +22,9 @@ export default function Header() {
         {categories.categories.categoryList&&categories.categories.categoryList.map(category=>{
           return(
             <div className='mainCategory'>
-              {category.name}
+              <Link to={`../products/${category._id}`} style={{textDecoration: 'none', color: 'white'}}>
+                {category.name}
+              </Link>
             </div>
           )
         })}

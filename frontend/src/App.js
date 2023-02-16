@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { isUserActive } from './store/actions/userActions';
 import MyAccount from './pages/myAccount';
 import Basket from './pages/Basket'
+import ProductsCategory from './pages/ProductsCategory';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/signing' element={<Signing/>}/>
         <Route path='/my_account' element={<MyAccount/>}/>
         <Route path='/basket' element={<Basket/>}/>
+        <Route path='/products/:id' element={<ProductsCategory/>}/>
       </Routes>
       </Router>
     </div>

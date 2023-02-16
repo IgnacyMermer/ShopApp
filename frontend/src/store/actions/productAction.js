@@ -22,3 +22,22 @@ export const getAllProducts = ()=>{
         }
     }
 }
+
+export const getProductsInCategory = (categoryId)=>{
+    return async dispatch=>{
+        dispatch({type: productConstants.PRODUCTS_GET_IN_CATEGORY_REQUEST})
+        try{
+            axios.get(`http://localhost:3000/products/category/${categoryId}`).then(result=>{
+                if(result.status==200){
+                    dispatch({type: productConstants.PRODUCTS_GET_IN_CATEGORY_SUCCESS, payload: result.data.products})
+                }
+                else{
+                    dispatch({type: productConstants.PRODUCTS_GET_IN_CATEGORY_FAILURE, error: result.data.error})
+                }
+            })
+        }
+        catch(e){
+            dispatch({type: productConstants.PRODUCTS_GET_IN_CATEGORY_FAILURE, error: e})
+        }
+    }
+}
