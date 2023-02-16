@@ -80,12 +80,9 @@ const userReducer = (state=initialState, action)=>{
                 error: null,
                 token: action.token
             }
+            break;
         case userConstants.ACTIVE_USER_FAILURE:
-            state={
-                ...state,
-                loading: true,
-                error: null
-            }
+            state=initialState
             break;
     }
     return state

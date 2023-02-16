@@ -45,6 +45,7 @@ export const isUserActive = (token)=>{
         dispatch({type: userConstants.ACTIVE_USER_REQUEST})
         try{
             const result = await axios.get(`http://localhost:3000/user-active/${token}`)
+            console.log(result)
             if(result.status == 200){
                 dispatch({type: userConstants.ACTIVE_USER_SUCCESS, payload: localStorage.getItem('user'), 
                     token})
