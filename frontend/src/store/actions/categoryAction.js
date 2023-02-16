@@ -1,12 +1,12 @@
 import {categoryConstant} from '../constants/categoryConstants'
-import axios from 'axios'
+import axios from '../../helpers/axiosInstance'
 
 export const getAllCategories = ()=>{
     return async dispatch=>{
         dispatch({type: categoryConstant.CATEGORY_ALL_GET_REQUEST})
 
         try{
-            axios.get('http://localhost:3000/categories/get').then(result=>{
+            axios.get('/categories/get').then(result=>{
                 if(result.status==200){
                     let categoryList = []
                     let subCategories = []

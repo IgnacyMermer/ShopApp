@@ -85,14 +85,22 @@ exports.signUp = (req, res, status)=>{
 
 exports.userActive = (req, res, status)=>{
     const token = req.params.token
-    if(jwt.verify(token, process.env.JWT_KEY)){
-       return res.status(200).json({
-        message: 'User active'
-       })
+    try{
+        if(jwt.verify(token, process.env.JWT_KEY)){
+            return res.status(200).json({
+             message: 'User active'
+            })
+         }
+         else{
+             return res.status(400).json({
+                 message: 'User not active'
+             })
+         }
     }
-    else{
+    catch(e){
         return res.status(400).json({
             message: 'User not active'
         })
     }
+    
 }

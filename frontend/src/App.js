@@ -9,6 +9,7 @@ import { isUserActive } from './store/actions/userActions';
 import MyAccount from './pages/myAccount';
 import Basket from './pages/Basket'
 import ProductsCategory from './pages/ProductsCategory';
+import OrderPage from './pages/orderPage';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/my_account' element={<MyAccount/>}/>
         <Route path='/basket' element={<Basket/>}/>
         <Route path='/products/:id' element={<ProductsCategory/>}/>
+        <Route path='/order' element={<OrderPage/>}/>
       </Routes>
       </Router>
     </div>

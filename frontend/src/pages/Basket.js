@@ -1,6 +1,7 @@
 import { Button } from '@mui/material'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { basketConstants } from '../store/constants/basketConstants'
 
 
@@ -40,6 +41,9 @@ export default function Basket() {
           <h3>Kwota całkowita:</h3>
           <h5>{basketReducer.price} zł</h5>
         </div>
+        <Button>
+          <Link style={{textDecoration: 'none', color: 'black'}} to='../order'>Złóz zamówienie</Link>
+        </Button>
     </div>
   )
 }
