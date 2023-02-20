@@ -2,8 +2,8 @@ import { Button, Card, CardActions, CardContent } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { addProductToBasket } from '../store/actions/basketActions'
-import { getProductsInCategory } from '../store/actions/productAction'
+import { addProductToBasket } from '../../store/actions/basketActions'
+import { getProductsInCategory } from '../../store/actions/productAction'
 
 
 export default function ProductsCategory() {

@@ -8,8 +8,10 @@ import { useDispatch } from 'react-redux';
 import { isUserActive } from './store/actions/userActions';
 import MyAccount from './pages/myAccount';
 import Basket from './pages/Basket'
-import ProductsCategory from './pages/ProductsCategory';
+import ProductsCategory from './pages/products/ProductsCategory';
 import OrderPage from './pages/orderPage';
+import ProductDetails from './pages/products/productDetails'
+
 
 function App() {
 
@@ -34,6 +36,7 @@ function App() {
         <Route path='/basket' element={<Basket/>}/>
         <Route path='/products/:id' element={<ProductsCategory/>}/>
         <Route path='/order' element={<OrderPage/>}/>
+        <Route path='/products/details-page/:id' element={<ProductDetails/>}/>
       </Routes>
       </Router>
     </div>

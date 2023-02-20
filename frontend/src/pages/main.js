@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../store/actions/productAction'
 import {Card, CardContent, CardActions, Button} from '@mui/material'
 import { addProductToBasket } from '../store/actions/basketActions'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Main() {
@@ -10,6 +11,7 @@ export default function Main() {
     const productReducer = useSelector(state=>state.productReducer)
     const basketReducer = useSelector(state=>state.basketReducer)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(getAllProducts())
@@ -20,7 +22,9 @@ export default function Main() {
         <div>
             <div style={{display: 'flex', flexWrap: 'wrap'}}>{productReducer.products&&productReducer.products.map((product)=>{
                 return (
-                    <Card style={{width: "50%"}}>
+                    <Card style={{width: "50%"}} onClick={()=>{
+                        navigate(`../products/details-page/${product._id}`)
+                    }}>
                         <CardContent>
                             <p>{product.name}</p>
                             <p>{product.description}</p>

@@ -21,6 +21,28 @@ exports.getAllProducts = (req, res, status)=>{
     }
 }
 
+exports.getProductDetails = (req, res, status)=>{
+    try{
+        Product.findOne({_id: req.params.id}).exec().then(product=>{
+            if(product){
+                return res.status(200).json({
+                    product
+                })
+            }
+            else{
+                return res.status(404).json({
+                    message: 'Not found'
+                })
+            }
+        })
+    }
+    catch(e){
+        return res.status(400).json({
+            error: e
+        })
+    }
+}
+
 exports.getProductsInCategory = async(req, res, status)=>{
     try{
         let products = []

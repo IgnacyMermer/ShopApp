@@ -4,6 +4,7 @@ import { productConstants } from "../constants/productContants";
 const initialState = {
     products: [],
     productsInCategory: [],
+    productDetails: null,
     loading: false,
     error: null
 }
@@ -17,6 +18,7 @@ const productReducer = (state=initialState, action)=>{
             }
             break;
         case productConstants.PRODUCTS_GET_ALL_SUCCESS:
+            console.log(action.payload)
             state={
                 ...state,
                 loading: false,
@@ -27,6 +29,29 @@ const productReducer = (state=initialState, action)=>{
             state={
                 ...state,
                 products: [],
+                loading: false,
+                error: action.error
+            }
+            break;
+        case productConstants.PRODUCTS_GET_DETAILS_ALL_REQUEST:
+            state={
+                ...state,
+                loading: true, 
+                error: null
+            }
+            break;
+        case productConstants.PRODUCTS_GET_DETAILS_ALL_SUCCESS:
+            console.log(action.payload)
+            state={
+                ...state,
+                productDetails: action.payload,
+                loading: false,
+                error: null
+            }
+            break;
+        case productConstants.PRODUCTS_GET_DETAILS_ALL_FAILURE:
+            state={
+                ...state,
                 loading: false,
                 error: action.error
             }
